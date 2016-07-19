@@ -1,0 +1,33 @@
+{
+  "name": "social_image_sharing",
+  "version": "0.0.1",
+  "description": "social image sharing on Nodejs based on ingum.com / red social para compartir images en Nodesjs basada en imgur.com",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "JavaScript",
+    "NodeJs",
+    "Express",
+    "MongoDb",
+    "Mongoose",
+    "Handlebars",
+    "ecmascript 2015"
+  ],
+  "author": "Fabian Js Nc",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "cookie-parser": "^1.4.3",
+    "errorhandler": "^1.4.3",
+    "express": "^4.13.4",
+    "express-handlebars": "^3.0.0",
+    "method-override": "^2.3.6",
+    "moment": "^2.13.0",
+    "mongoose": "^4.5.1",
+    "morgan": "^1.7.0",
+    "multer": "^1.1.0",
+    "serve-favicon": "^2.3.0"
+  }
+}

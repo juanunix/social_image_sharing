@@ -2,7 +2,7 @@ var viewModel = {
   image: {},
   comments: []
 };
-
+const   md5     = require('md5');
 const   fs      = require('fs'),
         path    = require('path');
 const   sidebar = require('../helpers/sidebar'),
@@ -73,9 +73,36 @@ module.exports={
     saveImage();
   },
   like:(req,res)=>{
-    res.json({likes:1});
+    Models.Image.findOne({filename:{$regex:req.params.image_id}},function(err,image) {
+      if(!err && image){
+        // image.likes=image.likes+1;
+        image.likes+=1;
+        image.save(function(err) {
+          if(err){
+            res.json(err);
+          }else{
+            res.json({likes:image.likes});
+          }
+
+        });
+      }
+
+    });
   },
   comment:(req,res)=>{
-    res.send('post: comment');
+    Models.Image.findOne({filename:{$regex:req.params.image_id}},function(err,image) {
+      if(!err && image){
+        console.log(req.body);
+        var newComment=new Models.Comment(req.body);//I pass the entire html form body in the constructor
+        newComment.gravatar=md5(newComment.email);
+        newComment.image_id=image._id;
+        newComment.save(function(err,comment) {
+          if(err){throw err;}
+          res.redirect('/images/'+image.uniqueId+'#'+comment._id);
+        });
+      }else{
+        res.redirect('/');
+      }
+    });
   }
 };

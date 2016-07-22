@@ -81,9 +81,9 @@
   		  			<img class="media-object img-circle" src="http://www.gravatar.com/avatar/{{gravatar}}?d=monsterid&s=45">
   		  		</a>
   		  		<div class="media-body">
-  		    		{{comment}}
-  		    		<br/><strong class="media-headig">
-  		    		{{name}}</strong> <small class="text-muted">{{timeago timestamp}}</small>
+  		    		<p id="{{_id}}">{{comment}}</p>
+  		    		<br/><strong class="media-headig">{{name}}</strong>
+              <small class="text-muted">{{timeago timestamp}}</small>
   		   		</div>
   		  	</li>
   		  {{/each}}

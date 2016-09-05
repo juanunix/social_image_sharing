@@ -5,11 +5,12 @@ const express         = require('express'),
       cookieParser    = require('cookie-parser'),
       morgan          = require('morgan'),
       methodOverride  = require('method-override'),
-      moment          = require('moment'),
       errorHandler    = require('errorhandler'),
       multer          = require('multer'),
       favicon         = require('serve-favicon');
-const routes          = require('./routes');
+var routes          = require('./routes');
+
+var helpers = require('../lib/handlebars');
 
 module.exports = (app)=>{
   app.disable('x-powered-by');
@@ -34,17 +35,10 @@ module.exports = (app)=>{
   }
   //rendering
   app.engine('handlebars',exphbs.create({
-   defaultLayout:'main',
-   layoutsDir:app.get('views')+'/layouts',
-   partialsDir:[app.get('views')+'/partials'],
-   helpers:{
-   	timeago:function(timestamp) {//global helpers
-   		return moment(timestamp).startOf('minute').fromNow();
-   	},
-    currentYear:function() {
-      return new Date().getFullYear();
-    }
-   }
+    defaultLayout:'main',
+    layoutsDir:path.join(app.get('views'),'layouts'),
+    partialsDir:[path.join(app.get('views'),'partials')],
+    helpers:helpers
   }).engine);
 
   app.set('view engine','handlebars');

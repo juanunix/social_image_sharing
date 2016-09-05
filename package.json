@@ -4,7 +4,8 @@
   "description": "social image sharing on Nodejs based on ingum.com / red social para compartir images en Nodesjs basada en imgur.com",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test":"mocha -r tests/testhelper.js -R spec tests/**/*.test.js"
   },
   "keywords": [
     "JavaScript",
@@ -31,5 +32,10 @@
     "morgan": "^1.7.0",
     "multer": "^1.1.0",
     "serve-favicon": "^2.3.0"
+  },
+  "devDependencies": {
+    "chai": "3.5.0",
+    "sinon": "1.17.5",
+    "sinon-chai": "2.8.0"
   }
 }

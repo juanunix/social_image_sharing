@@ -1,40 +1,25 @@
+const models = require('../models');
+const async  = require('async');
+
 module.exports = {
-newest: function() {
-var comments = [
-  {
-    image_id: 1,
-    email: 'fabianncdev@gmail.com',
-    name: 'Test Tester',
-    gravatar: 'http://lorempixel.com/75/75/animals/1',
-    comment: 'This is a test comment...',
-    timestamp: Date.now(),
-    image: {
-      uniqueId: 1,
-      title: 'Sample Image 1',
-      description: '',
-      filename: 'sample1.jpg',
-      views: 0,
-      likes: 0,
-      timestamp: Date.now
-    }
-  }, {
-image_id: 2,
-email: 'test@testing.com',
-name: 'Test Tester',
-gravatar: 'http://lorempixel.com/75/75/animals/2',
-comment: 'Another followup comment!',
-timestamp: Date.now(),
-image: {
-uniqueId: 1,
-title: 'Sample Image 1',
-description: '',
-filename: 'sample1.jpg',
-views: 0,
-likes: 0,
-timestamp: Date.now
-}
-}
-];
-  return comments;
-  }
+  newest: newest
 };
+
+var attackImage=function(comment,next) {
+  models.Image.findOne({_id:comment.image_id},function(err,image) {
+    if(err){throw err;}
+    comment.image=image;
+    next(err); //callback executes the 'next' item in the array
+  });
+};
+
+function newest(callback){
+  models.Comment.find({},{},{limit:5,sort:{'timestamp':-1}},
+    function(err,comments) {
+      //loop through every comment in the comments array
+      async.each(comments,attackImage,function(err) {
+        if(err){throw err;}
+        callback(err,comments);
+      });
+  });
+}

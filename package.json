@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test":"mocha -r tests/testhelper.js -R spec tests/**/*.test.js"
+    "test": "mocha -r tests/testhelper.js -R spec tests/**/*.test.js"
   },
   "keywords": [
     "JavaScript",
@@ -35,7 +35,9 @@
   },
   "devDependencies": {
     "chai": "3.5.0",
+    "mocha": "3.0.2",
     "sinon": "1.17.5",
-    "sinon-chai": "2.8.0"
+    "sinon-chai": "2.8.0",
+    "supertest": "2.0.0"
   }
 }

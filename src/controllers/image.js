@@ -56,7 +56,7 @@ function imageCreate(req,res){
         console.log(req.file);
         var tempPath = req.file.path,
         ext = path.extname(req.file.originalname).toLowerCase(),
-        targetPath = path.resolve('./public/upload/' + imgUrl + ext);
+        targetPath = path.join(__dirname, '../public/upload/' + imgUrl + ext);
         console.log(ext);
         if (ext === '.png' || ext === '.jpg' || ext === '.jpeg' || ext ==='.gif') {
           fs.rename(tempPath, targetPath, function(err) {
@@ -122,7 +122,7 @@ function imageRemove(req,res) {
   Models.Image.findOne({filename:{$regex:req.params.image_id}},
     function(err,image) {
     if(err) throw err;
-    fs.unlink(path.resolve('./public/upload/'+image.filename),
+    fs.unlink(path.resolve('./src/public/upload/'+image.filename),
       function(err) {
       if(err) throw err;
       Models.Comment.remove({image_id:image._id},

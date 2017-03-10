@@ -1,0 +1,22 @@
+a {
+  display: inline-block;
+  position: relative;
+  color: rgba(39, 174, 96,1.0);
+  text-decoration: none;
+  transition: all .5s ease;
+  transform-style: preserve-3d;
+}
+a:after {
+  content: "Upload";
+  position: absolute;
+  top: -100%;
+  left: 0px;
+  width: 100%;
+  background: #ccc;
+  transform-origin: left bottom;
+  transform: rotateX(90deg);
+}
+a:hover {
+  transform-origin: center bottom;
+  transform: rotateX(-90deg) translateY(100%);
+}

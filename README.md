@@ -1,23 +1,14 @@
-Esta es una super modesta copia de Imgur.com
+## What is this about
+This is a web examples based on Imgur.com
 
-## Instalacion
- 1. navega a la carpeta del proyecto
- 2. npm install 
- 3. npm start (asegurate de inicializar Mongodb con "./mongod")
+## ScreenShoots
+![](images/index.png)
+![](images/uploaded.png)
 
+## Instalation
+ 1. inside the proyect: `cd social_image_sharing_webapp`
+ 2. execute: `npm install && npm start`
+    - (you have to be running mongodb)
 
-### Dependencias usadas
-- multer
-- async
-
-##tests
-install mocha:
-`npm install mocha -g` or `sudo npm install mocha -g`
-The command to actually run tests is:
-`$ mocha -r tests/testhelper.js -R spec tests/**/*.test.js` or `npm test`
-
-###Gravatar
-  Gravatar profile picture. Gravatar is a universal avatar
-  service that stores profile pictures based on a user's e-mail address. However, the
-  unique ID they use for each profile is an MD5 hash value, which is why we have
-  to store that value.
+## Related
+  Gravatar
